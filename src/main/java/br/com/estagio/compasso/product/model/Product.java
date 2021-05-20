@@ -7,17 +7,23 @@ import javax.persistence.Id;
 
 @Entity
 public class Product {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private String id;
+	@Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 	private String name;
 	private String description;
 	private double price;
 	
-	public String getId() {
+	public Product() {
+	}
+	public Product(String name, String description, double price) {
+		this.name = name;
+		this.description = description;
+		this.price = price;
+	}
+	public Long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 	public String getName() {
