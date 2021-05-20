@@ -1,4 +1,4 @@
-package br.com.estagio.compasso.product.model;
+package br.com.compasso.product.model;
 
 public class MensagensErro {
 	Integer status_code;

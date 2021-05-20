@@ -1,9 +1,9 @@
-package br.com.estagio.compasso.product.controller.dto;
+package br.com.compasso.product.controller.dto;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import br.com.estagio.compasso.product.model.Product;
+import br.com.compasso.product.model.Product;
 
 public class ProductDto {
 	private Long id;

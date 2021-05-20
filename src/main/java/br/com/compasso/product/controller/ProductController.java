@@ -1,4 +1,4 @@
-package br.com.estagio.compasso.product.controller;
+package br.com.compasso.product.controller;
 
 import java.net.URI;
 import java.util.List;
@@ -20,11 +20,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.util.UriComponentsBuilder;
 
-import br.com.estagio.compasso.product.controller.dto.ProductDto;
-import br.com.estagio.compasso.product.controller.form.ProductForm;
-import br.com.estagio.compasso.product.model.MensagensErro;
-import br.com.estagio.compasso.product.model.Product;
-import br.com.estagio.compasso.product.repository.ProductRepository;
+import br.com.compasso.product.controller.dto.ProductDto;
+import br.com.compasso.product.controller.form.ProductForm;
+import br.com.compasso.product.model.MensagensErro;
+import br.com.compasso.product.model.Product;
+import br.com.compasso.product.repository.ProductRepository;
 
 @RestController
 @RequestMapping("/products")

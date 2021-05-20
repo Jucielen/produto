@@ -1,4 +1,4 @@
-package br.com.estagio.compasso.product.model;
+package br.com.compasso.product.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

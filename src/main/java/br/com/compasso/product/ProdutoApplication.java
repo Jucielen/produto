@@ -1,4 +1,4 @@
-package br.com.estagio.compasso.product;
+package br.com.compasso.product;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
