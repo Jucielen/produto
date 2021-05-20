@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import br.com.estagio.compasso.product.controller.dto.ProductDto;
 import br.com.estagio.compasso.product.controller.form.ProductForm;
+import br.com.estagio.compasso.product.model.MensagensErro;
 import br.com.estagio.compasso.product.model.Product;
 import br.com.estagio.compasso.product.repository.ProductRepository;
 
@@ -42,8 +44,7 @@ public class ProductController {
 		if(prod.isPresent()) {
 			return ResponseEntity.ok(new ProductDto(prod.get()));
 		}
-		return ResponseEntity.notFound().build();
-		
+		return ResponseEntity.status(404).body(new MensagensErro(404,"Produto não Encontrado"));
 	}
 
 	@GetMapping("/search")
@@ -74,10 +75,11 @@ public class ProductController {
 		}
 		return lista;
 	}
+	
 	@PostMapping
 	public ResponseEntity<?> newProduct(@RequestBody @Valid ProductForm form, UriComponentsBuilder uriBuilder, BindingResult result){
 		if(result.hasErrors()) {
-			return ResponseEntity.badRequest().build();
+			return ResponseEntity.status(400).body(new MensagensErro(400,"Verifique as informações informadas"));
 		}
 		
 		Product prod = form.converter();
@@ -86,6 +88,7 @@ public class ProductController {
 		return ResponseEntity.created(uri).body(new ProductDto(prod));
 		
 	}
+	
 	@PutMapping("/{id}")
 	public ResponseEntity<?> atualizar(@PathVariable Long id, @RequestBody @Valid ProductForm form){
 		Optional<Product> optional = repository.findById(id);
@@ -93,7 +96,18 @@ public class ProductController {
 			Product prod = form.atualizar(id, repository);
 			return ResponseEntity.ok().body(new ProductDto(prod));
 		}
-		return ResponseEntity.notFound().build();
+		return ResponseEntity.status(404).body(new MensagensErro(404,"Produto não encontrado para a realização de alterações"));
+		
+	}
+	
+	@DeleteMapping("/{id}")
+	public ResponseEntity<?> deletar(@PathVariable Long id){
+		Optional<Product> optional = repository.findById(id);
+		if(optional.isPresent()) {
+			repository.deleteById(id);
+			return ResponseEntity.ok().build();
+		}
+		return ResponseEntity.status(404).body(new MensagensErro(404,"Produto não encontrado para a realização de remoção"));
 		
 	}
 }
