@@ -35,12 +35,10 @@ public class ProductForm {
 		Double pricedouble =Double.valueOf(price);
 		return new Product(name, description, pricedouble);
 	}
-	public Product atualizar(Long id, ProductRepository repository) {
-		Product prod = repository.getOne(id);
+	public Product atualizar(Product prod) {
 		prod.setName(this.name);
 		prod.setDescription(this.description);
 		prod.setPrice(Double.valueOf(this.price));
-		repository.save(prod);
 		return prod;
 	}
 }
