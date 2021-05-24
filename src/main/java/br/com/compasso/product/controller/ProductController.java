@@ -38,7 +38,6 @@ public class ProductController {
 	
 	@GetMapping
 	public List<ProductDto> lista(){
-		//List<Product> produtos = repository.findAll();
 		return service.findAll();
 	}
 	
