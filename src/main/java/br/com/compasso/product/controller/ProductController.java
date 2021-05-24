@@ -32,8 +32,6 @@ import br.com.compasso.product.service.ProductService;
 @RestController
 @RequestMapping("/products")
 public class ProductController {
-	@Autowired
-	ProductRepository repository;
 	
 	@Autowired
 	ProductService service;
